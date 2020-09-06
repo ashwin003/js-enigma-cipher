@@ -1,0 +1,118 @@
+/* Variables */
+@main-text-color: #102372;
+@background: #FAFAFA;
+@shadow-color: rgba(0,0,0,0.07);
+@shadow-spread: 40px;
+@border-radius: 5px;
+
+/* Mixins */
+.boxShadow() {
+    box-shadow: 0 0 @shadow-spread @shadow-color;
+}
+
+.grid(@columns) {
+    display: grid;
+    grid-template-columns: repeat(@columns, auto);
+    grid-gap: 1em;
+}
+
+/* Styles */
+html {
+    height: 100vh;
+}
+
+body {
+    overflow: hidden;
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    height: 100vh;
+    align-items: center;
+    justify-content: center;
+    align-content: center;
+    background-image: #EEE;
+}
+.content {
+    width: 75vw;
+    height: 90vh;
+    position: relative;
+    left: 12.5vw;
+    top: 5vh;
+
+    h1 {
+        text-align: center;
+        text-transform: uppercase;
+        color: @main-text-color;
+        margin-top: 0;
+        user-select: none;
+    }
+
+    h1,
+    .paper,
+    .rotors,
+    .keyboard {
+        margin-bottom: 1.5em;
+    }
+
+    .paper {
+        .grid(2);
+
+        .text {
+            padding: 0.5em;
+            border-radius: @border-radius;
+            .boxShadow();
+            background: @background;
+
+            .title {
+                text-transform: uppercase;
+                margin-top: 0.5em;
+                text-align: center;
+                color: @main-text-color;
+            }
+        }
+    }
+
+    .rotors {
+        .grid(3);
+
+        width: 50%;
+        position: relative;
+        left: 25%;
+
+        .rotor {
+            border-radius: @border-radius;
+            .boxShadow();
+
+            .char {
+                display: block;
+                padding: 0.5em;
+                background: @background;
+                text-align: center;
+                opacity: 0.75;
+                
+                &.current {
+                    font-weight: bold;
+                    opacity: 1;
+                    color: @main-text-color;
+                }
+            }
+        }
+    }
+
+    .keyboard {
+        .grid(9);
+
+        user-select: none;
+
+        .character{
+            display: inline-block;
+            padding: 0.5em;
+            background: @background;
+            text-align:center;
+            font-weight:bold;
+            border-radius: @border-radius;
+            cursor: pointer;
+            color: @main-text-color;
+            .boxShadow();
+        } 
+    }
+}
